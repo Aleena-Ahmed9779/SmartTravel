@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar with Search</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+
+   
+
+
+    <!-- Flatpickr Stylesheet -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
+
+</head>
+<style>
+    /* Navbar Start */
+.navbar {
+    background-color: lightpink;
+    height: 80px;
+    margin: 20px;
+    border-radius: 16px;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    animation: fadeInDown 0.8s ease;
+    position: relative;
+}
+
+/* Brand Animation */
+.navbar-brand {
+    font-weight: 500;
+    color: #209970;
+    font-size: 24px;
+    transition: 0.3s color;
+    animation: slideInLeft 0.8s ease;
+}
+
+/* Add to Cart Icon and Search Icon Animation */
+.add-to-cart-icon, .search-icon {
+    font-size: 20px;
+    color: #209970;
+    transition: 0.3s color;
+    cursor: pointer;
+    animation: bounceIn 1s ease;
+}
+
+.add-to-cart-icon:hover, .search-icon:hover {
+    color: #226383;
+    transform: scale(1.1);
+    transition: 0.3s transform;
+}
+
+/* Search Container */
+.search-container {
+position: relative;
+display: flex;
+align-items: center;
+margin-left: 0;
+}
+
+/* Search Input */
+.search-input {
+padding: 8px 1px 8px 20px; /* Adjust padding to accommodate cross button */
+border-radius: 50px;
+border: 1px solid #ccc;
+width: 0;
+opacity: 0;
+visibility: hidden;
+transition: opacity 0.5s ease, visibility 0.5s ease, width 0.5s ease;
+font-size: 14px;
+display: inline-block; /* Ensures that the input element behaves correctly */
+position: absolute; /* Absolute positioning to prevent affecting other elements */
+top: 50%; /* Center vertically */
+transform: translateY(-50%); /* Center vertically */
+}
+
+/* Move search bar towards the left when active */
+.search-input.active {
+opacity: 1;
+visibility: visible;
+width: 220px; /* Width when active */
+transform: translateX(-10px) translateY(-50%); /* Adjust this value to move the search bar left */
+}
+
+/* Close Button Inside Search Bar */
+.close-search {
+position: absolute;
+right:-160px; /* Adjust based on your layout */
+top: 50%;
+transform: translateY(-50%);
+background: none;
+border: none;
+font-size: 16px;
+color: #666;
+cursor: pointer;
+transition: color 0.3s ease;
+opacity: 0; /* Hide initially */
+visibility: hidden; /* Hide initially */
+
+}
+
+.search-input.active + .close-search {
+opacity: 1;
+visibility: visible; /* Show when search input is active */
+}
+
+.close-search:hover {
+color: #000;
+}
+
+/* Login and Signup Buttons */
+.login-button, .signup-button {
+    background-color: #209970;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: 0.3s background-color, 0.3s transform;
+    animation: slideInRight 0.8s ease;
+}
+
+.login-button:hover, .signup-button:hover {
+    background-color: #226383;
+    transform: scale(1.1);
+}
+
+/* Navbar Toggler */
+.navbar-toggler {
+    border: none;
+    font-size: 1.25rem;
+    animation: fadeIn 0.8s ease;
+}
+
+.navbar-toggler:focus, .btn-close:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+/* Nav Link Hover Effect */
+.nav-link {
+    color: #666777;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s, transform 0.3s;
+    animation: fadeInUp 0.8s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #000;
+    transform: translateY(-3px);
+}
+
+.offcanvas {
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust the transparency level as needed */
+}
+
+.offcanvas-header {
+    background-color: transparent;
+    border-bottom: none; /* Remove border if you want to have a seamless look */
+}
+
+.offcanvas-body {
+    padding: 1rem; /* Adjust padding if necessary */
+}
+
+.add-to-cart-icon {
+    position: relative;
+}
+
+#cartCount {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+
+/* Cart Menu Styles */
+#cartMenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Default width for larger screens */
+    z-index: 1000;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+    transition: width 0.3s ease, max-height 0.3s ease;
+}
+
+/* Adjustments for medium screens */
+@media (max-width: 992px) {
+    #cartMenu {
+        width: 250px; /* Reduce width for medium screens */
+        right: 10px;
+        max-height: 350px;
+    }
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    #cartMenu {
+        width: 220px; /* Further reduce width */
+        right: 5px;
+        max-height: 300px;
+    }
+}
+
+/* Full adjustment for mobile screens */
+@media (max-width: 576px) {
+    #cartMenu {
+        width: 220px; /* Use most of the screen width */
+        /* Center the cart menu */
+        right: 5%; /* Remove right positioning */
+        max-height: 65vh; /* Limit height based on viewport height */
+    }
+}
+
+/* Special adjustment for smallest screens (under 587px) */
+@media (max-width: 587px) {
+    #cartMenu {
+        width: 220px; /* Use almost full screen width */
+         /* Center the menu */
+        right: 2.5%; /* No right positioning */
+        max-height: 55vh; /* Restrict height to avoid cutting */
+        font-size: 14px; /* Smaller text for better fitting */
+        padding: 8px; /* Adjust padding to fit content */
+    }
+}
+
+#cartMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#cartMenu li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#cartMenu li:last-child {
+    border-bottom: none;
+}
+
+#cartMenu .empty-cart {
+    padding: 10px;
+    text-align: center;
+    color: #888;
+}
+
+/* Text size adjustments for better readability on smaller screens */
+@media (max-width: 576px) {
+    .item-details {
+        font-size: 12px;
+    }
+
+    .item-price {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 587px) {
+    .item-details {
+        font-size: 11px;
+    }
+
+    .item-price {
+        font-size: 12px;
+    }
+}
+
+/* Nav Link Underline Animation */
+@media (min-width: 991px) {
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: #209970;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::before, .nav-link.active::before {
+        width: 100%;
+        visibility: visible;
+    }
+}
+
+/* Keyframes for Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Navbar Ends */
+
+/* 7th part Start */
+.container .cann {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+}
+
+.cann .heading {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.cann .card-item {
+    display: none;
+}
+
+.cann .heading h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, #ff7f50, #1e90ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.cann .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+}
+
+.cann .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cann .card-img {
+    position: relative;
+}
+
+.cann .default-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.cann .card-body {
+    padding: 0.5rem;
+    margin: 0.3rem 0;
+    padding-top: 0.2rem;
+}
+
+
+
+
+
+.cann .card-text-button p:first-of-type {
+    font-size: 0.9rem;
+    color: black;
+}
+
+.cann .card-text-button p:first-of-type i {
+    color: #f1c40f;
+}
+
+.cann .card-text-button p:nth-of-type(2) {
+    font-size: 0.8rem;
+}
+
+.cann .price {
+    font-weight: bold;
+    font-size: 1.1rem;
+ 
+
+}
+
+.cann .custom-btn {
+ 
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 130px;
+}
+
+.cann .custom-btn:hover {
+    background-color: transparent;
+    color: #28a745;
+    border: 2px solid #28a745;
+    transform: scale(1.05);
+}
+
+.cann .btn-text {
+    font-size: 1rem;
+}
+
+.cann .members, .mem {
+    font-size: 0.9rem;
+    color: #333;
+    margin-left: 0.5rem;
+}
+
+.cann .members i {
+    color: #1e90ff;
+    margin-right: 0.3rem;
+}
+
+.cann .mem i {
+    color: #28a745;
+}
+
+.cann .location-members {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cann .divider {
+    width: 1px;
+    height: 20px;
+    background-color: #ccc;
+    display: inline-block;
+}
+
+.cann .transport-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    
+}
+
+
+
+.cann .transport-icons p{
+    font-weight: bold;
+    
+}
+
+.cann .transport-icon {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.cann .transport-icon.selected {
+    color: #f1c40f;
+}
+
+.cann .activities {
+margin-top: 0.2rem;
+}
+
+.cann .transportation{
+    margin-top: 0.5rem;
+}
+
+.cann .transportation p {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    }
+
+.cann .activities p {
+
+font-size: 0.9rem;
+font-weight: bold;
+margin-bottom: 0.5rem;
+}
+
+.cann .activity-icons {
+display: flex;
+flex-wrap: wrap;
+gap: 15px;
+}
+
+.cann .activity-item {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.cann .activity-icon {
+font-size: 1.5rem;
+color: #333;
+transition: color 0.3s ease;
+}
+
+.cann .activity-name {
+font-size: 0.9rem;
+color: #333;
+}
+
+.cann .activity-icon:hover {
+color: #f1c40f; /* Change this to any color you prefer for hover effect */
+}
+
+/* Example icon colors */
+.cann .fa-parachute-box {
+color: #ff6347; /* Tomato red for paragliding */
+}
+
+.cann .fa-water {
+color: #00bfff; /* Deep sky blue for jet skiing */
+}
+
+.cann .fa-hiking {
+color: #32cd32; /* Lime green for hiking */
+}
+
+.cann .fa-skiing {
+color: #8a2be2; /* Blue violet for skiing */
+}
+
+.cann .fa-bus{
+color: palevioletred;
+}
+
+.cann .fa-train{
+color: lightseagreen;
+}
+
+.cann .fa-plane{
+color: #f1c40f;
+}
+
+.cann .transport-name {
+font-size: 0.9rem;
+color: #333;
+}
+
+.cann .transport-item {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.cann .transport-icon{
+margin-left: 6px;
+}
+.cann .transport-name{
+margin-left: -3px;
+}
+
+
+
+.cann .form-label{
+    color: black;
+}
+/* 7th part ends */
+</style>
+
+<body>
+    <!-- Navbar Start-->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand me-auto" href="#">LOGO</a>
+
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">LOGO</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2" href="#">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2" href="#">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-lg-2" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="position-relative">
+                <a href="#" class="add-to-cart-icon me-3" onclick="toggleCartMenu()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cartCount" class="badge bg-primary">0</span>
+                </a>
+                <div id="cartMenu">
+                    <!-- Cart items will be dynamically added here -->
+                    <div class="empty-cart">Your cart is empty</div>
+                </div>
+            </div>
+            <div class="search-container">
+                <a href="#" class="search-icon me-3" onclick="toggleSearch()">
+                    <i class="fas fa-search"></i>
+                </a>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search...">
+                <button class="close-search" onclick="clearSearch(event)">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+
+
+            <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <script>
+        function toggleSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.classList.toggle('active');
+            if (searchInput.classList.contains('active')) {
+                searchInput.focus();
+            }
+        }
+
+        function clearSearch(event) {
+            event.stopPropagation(); // Prevents the click event from toggling the search bar
+            const searchInput = document.getElementById('searchInput');
+            searchInput.value = '';
+            searchInput.classList.remove('active');
+        }
+
+        // Optional: Close the search bar when clicking outside of it
+        document.addEventListener('click', function (event) {
+            const searchInput = document.getElementById('searchInput');
+            const searchContainer = document.querySelector('.search-container');
+
+            if (!searchContainer.contains(event.target) && searchInput.classList.contains('active')) {
+                searchInput.classList.remove('active');
+            }
+        });
+    </script>
+
+    <!-- Navbar Ends-->
+
+
+
+       <!-- 7th part Start -->
+       <div class="container cann mt-5">
+        <div class="heading">
+            <h1>Explore Our Top Tour Packages</h1>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="countrySelect" class="form-label">Sort by Country:</label>
+                <select class="form-select" id="countrySelect">
+                    <option value="">Select Country</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Egypt">Egypt</option>
+                    <option value="Thailand">Thailand</option>
+                    <option value="Amazon">Amazon</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="activitySelect" class="form-label">Sort by Activity:</label>
+                <select class="form-select" id="activitySelect">
+                    <option value="">Select Activity</option>
+                    <option value="Family Tour">Family Tour</option>
+                    <option value="Adventure Tour">Adventure Tour</option>
+                    <option value="Luxury Tour">Luxury Tour</option>
+                    <option value="Cultural Tour">Cultural Tour</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" id="cardsContainer">
+
+
+            <!-- Canada -->
+            <!-- Family Tour -->
+            <div class="col-12 col-sm-6 col-md-4 mb-4 card-item" data-country="Canada" data-activity="Family Tour">
+                <div class="card text-start">
+                    <div class="card-img">
+                        <img src="image/1.jfif" class="img-fluid default-img" alt="Package Image">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text-button">
+                            <div class="location-members">
+                                <p><i class="fas fa-map-marker-alt"></i> CN Tower</p>
+                                <span class="divider"></span>
+                                <p class="members"><i class="fas fa-users"></i> 5 members</p>
+                                <span class="divider"></span>
+                                <p class="mem"><i class="fas fa-hotel"></i> HI Toronto</p>
+                            </div>
+
+                            <div class="activities">
+                                <p>Activities:</p>
+                                <div class="activity-icons">
+                                    <div class="activity-item">
+                                        <i class="fas fa-parachute-box activity-icon"></i>
+                                        <span class="activity-name">Paragliding</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <i class="fas fa-water activity-icon"></i>
+                                        <span class="activity-name">Jet Skiing</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <i class="fas fa-hiking activity-icon"></i>
+                                        <span class="activity-name">Hiking</span>
+                                    </div>
+                                    <div class="activity-item">
+                                        <i class="fas fa-skiing activity-icon"></i>
+                                        <span class="activity-name">Skiing</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="transportation">
+                                <p>Transportation:</p>
+                                <div class="transport-icons">
+
+                                    <div class="transport-item">
+                                        <i class="fas fa-bus transport-icon" data-price="950"></i>
+                                        <span class="transport-name">Bus</span>
+                                    </div>
+                                    <div class="transport-item">
+                                        <i class="fas fa-train transport-icon" data-price="1000"></i>
+                                        <span class="transport-name">Train</span>
+                                    </div>
+                                    <div class="transport-item">
+                                        <i class="fas fa-plane transport-icon" data-price="1200"></i>
+                                        <span class="transport-name">Plane</span>
+                                    </div>
+                                </div>
+
+                                <p class="price" data-card="1"
+                                    style="margin-top: 0.5rem; margin-left: 0.1rem; font-weight: bold;">RS 0</p>
+
+                                <button class="custom-btn">
+                                    <i class="fas fa-shopping-cart"></i> <!-- Add to Cart Icon -->
+                                </button>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Add more cards similarly -->
+            </div>
+
+        </div>
+
+    </div>
+
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Handle transport icon clicks
+                document.querySelectorAll('.transport-icon').forEach(icon => {
+                    icon.addEventListener('click', function () {
+                        const card = this.closest('.card');
+                        const priceElement = card.querySelector('.price');
+
+                        // Remove 'selected' class from all transport icons
+                        document.querySelectorAll('.transport-icon').forEach(icon => icon.classList.remove('selected'));
+                        this.classList.add('selected');
+
+                        // Update the price on the card based on the selected transport
+                        const transportPrice = parseFloat(this.getAttribute('data-price')) || 0;
+                        priceElement.textContent = 'RS ' + transportPrice;
+                    });
+                });
+
+                // Handle adding items to the cart
+                document.querySelectorAll('.custom-btn').forEach(btn => {
+                    btn.addEventListener('click', function (event) {
+                        const card = event.target.closest('.card');
+                        const name = card.querySelector('.mem').textContent.trim();
+                        const priceElem = card.querySelector('.price');
+                        const price = parseFloat(priceElem.textContent.replace('RS ', '').replace(',', '')) || 0;
+                        const details = card.querySelector('.location-members').textContent.trim();
+                        addToCart(name, price, details);
+                    });
+                });
+
+                const cart = [];
+                const cartMenu = document.getElementById('cartMenu');
+                const cartCount = document.getElementById('cartCount');
+
+                function updateCart(items) {
+                    if (items.length === 0) {
+                        cartMenu.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+                        cartCount.textContent = '0';
+                        return;
+                    }
+
+                    cartMenu.innerHTML = '';
+                    items.forEach(item => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `<div class="item-details">
+        <p><strong>${item.name}</strong></p>
+        <p class="item-price">RS ${item.price.toFixed(2)}</p>
+        <p>${item.details}</p>
+    </div>`;
+                        cartMenu.appendChild(listItem);
+                    });
+
+                    cartCount.textContent = items.length;
+                }
+
+                function addToCart(name, price, details) {
+                    cart.push({ name, price, details });
+                    updateCart(cart);
+                }
+
+                function toggleCartMenu() {
+                    cartMenu.style.display = cartMenu.style.display === 'block' ? 'none' : 'block';
+                }
+
+                // Attach click event to cart icon to toggle cart menu
+                document.querySelector('.add-to-cart-icon').addEventListener('click', toggleCartMenu);
+
+                // Handle filtering of cards
+                const cardsContainer = document.getElementById('cardsContainer');
+                const countrySelect = document.getElementById('countrySelect');
+                const activitySelect = document.getElementById('activitySelect');
+
+                function filterCards() {
+                    const selectedCountry = countrySelect.value;
+                    const selectedActivity = activitySelect.value;
+
+                    const cards = cardsContainer.getElementsByClassName('card-item');
+                    Array.from(cards).forEach(card => {
+                        const cardCountry = card.getAttribute('data-country');
+                        const cardActivity = card.getAttribute('data-activity');
+
+                        const countryMatch = !selectedCountry || cardCountry === selectedCountry;
+                        const activityMatch = !selectedActivity || cardActivity === selectedActivity;
+
+                        if (countryMatch && activityMatch) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+
+                // Initialize filters and event listeners
+                countrySelect.addEventListener('change', filterCards);
+                activitySelect.addEventListener('change', filterCards);
+
+                // Default filter initialization
+                countrySelect.value = 'Canada';
+                activitySelect.value = 'Family Tour';
+                filterCards();
+
+
+
+            });
+        </script>
+
+        <!-- 7th part Ends -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</head>

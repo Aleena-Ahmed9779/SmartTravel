@@ -1,0 +1,1255 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body{
+    margin: 0;
+    background-color: #fff;
+    color: #eee;
+    
+
+}
+/* Navbar Styles */
+.navbar {
+    background-color: lightpink;
+    height: 80px;
+    margin: 20px;
+    border-radius: 16px;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    animation: fadeInDown 0.8s ease;
+}
+
+/* Brand Animation */
+.navbar-brand {
+    font-weight: 500;
+    color: #209970;
+    font-size: 24px;
+    transition: 0.3s color;
+    animation: slideInLeft 0.8s ease;
+}
+
+/* Add to Cart Icon and Search Icon Animation */
+.add-to-cart-icon, .search-icon {
+    font-size: 20px;
+    color: #209970;
+    transition: 0.3s color;
+    cursor: pointer;
+    animation: bounceIn 1s ease;
+}
+
+.add-to-cart-icon:hover, .search-icon:hover {
+    color: #226383;
+    transform: scale(1.1);
+    transition: 0.3s transform;
+}
+
+/* Search Input 
+.search-input {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: -200px;
+    transform: translateY(-50%);
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: left 0.5s ease, opacity 0.5s ease;
+}
+
+.search-input.active {
+    display: inline-block;
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+}
+*/
+
+/* Login and Signup Buttons */
+.login-button, .signup-button {
+    background-color: #209970;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: 0.3s background-color, 0.3s transform;
+    animation: slideInRight 0.8s ease;
+}
+
+.login-button:hover, .signup-button:hover {
+    background-color: #226383;
+    transform: scale(1.1);
+}
+
+/* Navbar Toggler */
+.navbar-toggler {
+    border: none;
+    font-size: 1.25rem;
+    animation: fadeIn 0.8s ease;
+}
+
+.navbar-toggler:focus, .btn-close:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+/* Nav Link Hover Effect */
+.nav-link {
+    color: #666777;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s, transform 0.3s;
+    animation: fadeInUp 0.8s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #000;
+    transform: translateY(-3px);
+}
+
+.offcanvas {
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust the transparency level as needed */
+}
+
+.offcanvas-header {
+    background-color: transparent;
+    border-bottom: none; /* Remove border if you want to have a seamless look */
+}
+
+.offcanvas-body {
+    padding: 1rem; /* Adjust padding if necessary */
+}
+
+
+
+/* Nav Link Underline Animation */
+@media (min-width: 991px) {
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: #209970;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-link:hover::before, .nav-link.active::before {
+        width: 100%;
+        visibility: visible;
+    }
+}
+
+/* Keyframes for Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Basic Cart Container Styles */
+.cart-container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 30%;
+    height: 70%;
+    background-color: #fff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1050;
+    overflow-y: auto;
+}
+
+.cart-container.active {
+    transform: translateX(0);
+}
+
+.cart-header {
+    padding: 1rem;
+    background-color: lightpink;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-body {
+    padding: 1rem;
+}
+
+
+/* carousel */
+.carousel{
+    height: 100vh;
+    margin-top: -50px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.carousel .list .item{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0 0 0 0;
+}
+.carousel .list .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.carousel .list .item .content{
+    position: absolute;
+    top: 20%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-right: 30%;
+    box-sizing: border-box;
+    color: #fff;
+    text-shadow: 0 5px 10px #0004;
+}
+.carousel .list .item .author{
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+.carousel .list .item .title,
+.carousel .list .item .topic{
+    font-size: 5em;
+    font-weight: bold;
+    line-height: 1.3em;
+}
+.carousel .list .item .topic{
+    color: #f1683a;
+}
+.carousel .list .item .buttons{
+    display: grid;
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: 40px;
+    gap: 5px;
+    margin-top: 20px;
+}
+.carousel .list .item .buttons button{
+    border: none;
+    background-color: #eee;
+    letter-spacing: 3px;
+    font-family: Poppins;
+    font-weight: 500;
+}
+.carousel .list .item .buttons button:nth-child(2){
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #eee;
+}
+/* thumbail */
+.thumbnail{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: max-content;
+    z-index: 100;
+    display: flex;
+    gap: 20px;
+}
+.thumbnail .item{
+    width: 150px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+}
+.thumbnail .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+.thumbnail .item .content{
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+.thumbnail .item .content .title{
+    font-weight: 500;
+}
+.thumbnail .item .content .description{
+    font-weight: 300;
+}
+/* arrows */
+.arrows{
+    position: absolute;
+    top: 80%;
+    right: 52%;
+    z-index: 100;
+    width: 300px;
+    max-width: 30%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.arrows button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eee4;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    font-weight: bold;
+    transition: .5s;
+}
+.arrows button:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+/* animation */
+.carousel .list .item:nth-child(1){
+    z-index: 1;
+}
+
+/* animation text in first item */
+
+.carousel .list .item:nth-child(1) .content .author,
+.carousel .list .item:nth-child(1) .content .title,
+.carousel .list .item:nth-child(1) .content .topic,
+.carousel .list .item:nth-child(1) .content .des,
+.carousel .list .item:nth-child(1) .content .buttons
+{
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s 1s linear 1 forwards;
+}
+@keyframes showContent{
+    to{
+        transform: translateY(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+.carousel .list .item:nth-child(1) .content .title{
+    animation-delay: 1.2s!important;
+}
+.carousel .list .item:nth-child(1) .content .topic{
+    animation-delay: 1.4s!important;
+}
+.carousel .list .item:nth-child(1) .content .des{
+    animation-delay: 1.6s!important;
+}
+.carousel .list .item:nth-child(1) .content .buttons{
+    animation-delay: 1.8s!important;
+}
+/* create animation when next click */
+.carousel.next .list .item:nth-child(1) img{
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    border-radius: 30px;
+    animation: showImage .5s linear 1 forwards;
+}
+@keyframes showImage{
+    to{
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}
+
+.carousel.next .thumbnail .item:nth-last-child(1){
+    overflow: hidden;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+.carousel.prev .list .item img{
+    z-index: 100;
+}
+@keyframes showThumbnail{
+    from{
+        width: 0;
+        opacity: 0;
+    }
+}
+.carousel.next .thumbnail{
+    animation: effectNext .5s linear 1 forwards;
+}
+
+@keyframes effectNext{
+    from{
+        transform: translateX(150px);
+    }
+}
+
+/* running time */
+
+.carousel .time{
+    position: absolute;
+    z-index: 1000;
+    width: 0%;
+    height: 3px;
+    background-color: #f1683a;
+    left: 0;
+    top: 0;
+}
+
+.carousel.next .time,
+.carousel.prev .time{
+    animation: runningTime 3s linear 1 forwards;
+}
+@keyframes runningTime{
+    from{ width: 100%}
+    to{width: 0}
+}
+
+
+/* prev click */
+
+.carousel.prev .list .item:nth-child(2){
+    z-index: 2;
+}
+
+.carousel.prev .list .item:nth-child(2) img{
+    animation: outFrame 0.5s linear 1 forwards;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+@keyframes outFrame{
+    to{
+        width: 150px;
+        height: 220px;
+        bottom: 50px;
+        left: 50%;
+        border-radius: 20px;
+    }
+}
+
+.carousel.prev .thumbnail .item:nth-child(1){
+    overflow: hidden;
+    opacity: 0;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+.carousel.next .arrows button,
+.carousel.prev .arrows button{
+    pointer-events: none;
+}
+.carousel.prev .list .item:nth-child(2) .content .author,
+.carousel.prev .list .item:nth-child(2) .content .title,
+.carousel.prev .list .item:nth-child(2) .content .topic,
+.carousel.prev .list .item:nth-child(2) .content .des,
+.carousel.prev .list .item:nth-child(2) .content .buttons
+{
+    animation: contentOut 1.5s linear 1 forwards!important;
+}
+
+@keyframes contentOut{
+    to{
+        transform: translateY(-150px);
+        filter: blur(20px);
+        opacity: 0;
+    }
+}
+@media screen and (max-width: 678px) {
+    .carousel .list .item .content{
+        padding-right: 0;
+    }
+    .carousel .list .item .content .title{
+        font-size: 30px;
+    }
+}
+
+#card-area{
+    padding: 50px 0;
+}
+.box-area{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 40px;
+    margin-top: 50px;
+}
+.box {
+	border-radius: 10px;
+	position: relative;
+	overflow: hidden;
+	box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+}
+.box img{
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    transition: transform 0.5s;
+    
+}
+.overlay {
+	width: 100%;
+	height: 0;
+	background: linear-gradient(transparent,#1c1c1c 58%);
+	border-radius: 10px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 20px;
+	text-align: center;
+	font-size: 14px;
+	transition: height 0.5s;
+}
+.overlay h3 {
+	font-weight: 500;
+	margin-bottom: 5px;
+	margin-top: 80%;
+	font-family: 'Bebas Neue', sans-serif;
+	font-size: 30px;
+	letter-spacing: 2px;
+}
+.overlay a {
+	margin-top: 10px;
+	color: #262626;
+	text-decoration: none;
+	font-size: 14px;
+	background: #fff;
+	border-radius: 50px;
+	text-align: center;
+	padding: 5px 15px;
+}
+.box:hover img{
+    transform: scale(1.1);
+}
+.box:hover .overlay{
+    height: 100%;
+}
+
+
+
+html {
+    font-family: sans-serif;
+    box-sizing: border-box;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .color-white {
+    color: #fff;
+  }
+  
+  .box-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 35px 15px;
+    width: 100%;
+  }
+  
+  @media screen and (min-width:1380px) {
+    .box-container {
+      flex-direction: row
+    }
+  }
+  
+  .box-item {
+    position: relative;
+    -webkit-backface-visibility: hidden;
+    width: 415px;
+    margin-bottom: 35px;
+    max-width: 100%;
+  }
+  
+  .flip-box {
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+  }
+  
+  .flip-box-front,
+  .flip-box-back {
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    min-height: 475px;
+    -ms-transition: transform 0.7s cubic-bezier(.4,.2,.2,1);
+    transition: transform 0.7s cubic-bezier(.4,.2,.2,1);
+    -webkit-transition: transform 0.7s cubic-bezier(.4,.2,.2,1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flip-box-front {
+    -ms-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-box:hover .flip-box-front {
+    -ms-transform: rotateY(-180deg);
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-box-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    -ms-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-box:hover .flip-box-back {
+    -ms-transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-box .inner {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: 60px;
+    outline: 1px solid transparent;
+    -webkit-perspective: inherit;
+    perspective: inherit;
+    z-index: 2;
+    
+    transform: translateY(-50%) translateZ(60px) scale(.94);
+    -webkit-transform: translateY(-50%) translateZ(60px) scale(.94);
+    -ms-transform: translateY(-50%) translateZ(60px) scale(.94);
+    top: 50%;
+  }
+  
+  .flip-box-header {
+    font-size: 34px;
+  }
+  
+  .flip-box p {
+    font-size: 20px;
+    line-height: 1.5em;
+  }
+  
+  .flip-box-img {
+    margin-top: 25px;
+  }
+  
+  .flip-box-button {
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 25px;
+    padding: 15px 20px;
+    text-transform: uppercase;
+  }
+
+  
+
+footer{
+    position: relative;
+    width: 100%;
+    background: #3586ff;
+    min-height: 100px;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+footer .social-icons, footer .menu{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+footer .social-icons li, footer .menu li{
+    list-style: none;
+}
+
+footer .social-icons li a{
+    font-size: 2em;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+footer .social-icons li a:hover{
+    transform: translateY(-10px);
+}
+
+footer .menu li a{
+    font-size: 1.2em;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    text-decoration: none;
+    opacity: 0.75;
+
+}
+
+
+footer .menu li a:hover{
+    opacity: 1;
+}
+
+footer p{
+    color: #fff;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+footer .wave{
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url(wave.png);
+    background-size: 1000px 100px;
+
+}
+
+footer .wave#wave1{
+    z-index: 1000;
+    opacity: 1;
+    bottom: 0;
+    animation: animatewave 4s linear infinite ;
+}
+
+footer .wave#wave2{
+    z-index: 999;
+    opacity: 0.5;
+    bottom: 10px;
+    animation: animatewave_02 3s linear infinite ;
+}
+footer .wave#wave3{
+    z-index: 1000;
+    opacity: 0.2;
+    bottom: 15px;
+    animation: animatewave 3s linear infinite ;
+}
+
+footer .wave#wave4{
+    z-index: 999;
+    opacity: 0.7;
+    bottom: 20px;
+    animation: animatewave_02 4s linear infinite ;
+}
+
+@keyframes animatewave{
+    0%{
+        background-position-x: 1000px ;
+    }
+    100%{
+        background-position-x: 0px;
+    }
+}
+
+@keyframes animatewave_02{
+    0%{
+        background-position-x: 0px ;
+    }
+    100%{
+        background-position-x: 100 0px;
+    }
+}
+
+@button-colour: #009ED8;
+@button-text: #ffffff;
+@regular-text: #333;
+@button-tint: fadeout(#000, 90%);
+@background: #303036;
+
+
+
+.button {
+  display: inline-block;
+  left: 30%;
+
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  padding: .8em 1.4em;
+  padding-right: 4.7em;
+  background: @button-colour;
+  border: none;
+  color: white;
+  transition: .2s;
+  &:before,
+  &:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding-top: inherit;
+    padding-bottom: inherit;
+    width: 2.8em;
+    content: "\00a0";
+    font-family: 'FontAwesome', sans-serif;
+    font-size: 1.2em;
+    text-align: center;
+    
+    transition: .2s;
+    transform-origin: 50% 60%;
+  }
+  &:before {
+    background: @button-tint;
+  }
+  &:hover {
+    background: darken(@button-colour, 10%);
+  }
+  &:active,
+  &:focus {
+    background: darken(@button-colour, 30%);
+    outline: none;
+  }
+}
+
+.button {
+  min-width: 15em;
+}
+
+.arrow {
+  background: #FE5F55;
+  &:hover {
+    background: darken(#FE5F55, 10%);
+  }
+  &:active,
+  &:focus {
+    background: darken(#FE5F55, 30%);
+  }
+  &:after {
+    content: "\F054";
+  }
+  &:hover:after {
+    -webkit-animation: bounceright .3s alternate ease infinite;
+    animation: bounceright .3s alternate ease infinite;
+  }
+}
+
+.phone { 
+  background: #139675;
+  &:hover {
+    background: darken(#139675, 10%);
+  }
+  &:active,
+  &:focus {
+    background: darken(#139675, 20%);
+  }
+  &:after {
+    content: "\F095";
+  }
+  &:hover:after {
+    -webkit-animation: wiggle .05s alternate ease infinite;
+    animation: wiggle .05s alternate ease infinite;
+  }
+}
+
+.email {
+  background: #C673B3;
+  &:hover {
+    background: darken(#C673B3, 10%);
+  }
+  &:active,
+  &:focus {
+    background: darken(#C673B3, 20%);
+  }
+  &:after {
+    content: "\F0E0";
+  }
+  &:hover:after {
+    -webkit-animation: none;
+    -webkit-transform: skew(-20deg);
+    animation: none;
+    transform: skew(-20deg);
+    text-indent: .1em;
+  }
+}
+
+.search {
+  &:after {
+    content:"\f002";
+  }
+  &:hover:after {
+    -webkit-animation: none;
+    -webkit-transform: scale(1.4);
+    animation: none;
+    transform: scale(1.4);
+  }
+}
+
+
+@-webkit-keyframes bounceright {
+  from { -webkit-transform: translateX(0); }
+  to   { -webkit-transform: translateX(3px); }
+}
+
+@-webkit-keyframes wiggle {
+  from { -webkit-transform: rotate(0deg); }
+  to   { -webkit-transform: rotate(30deg); }
+}
+
+@keyframes bounceright {
+  from { transform: translateX(0); }
+  to   { transform: translateX(3px); }
+}
+
+@keyframes wiggle {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(30deg); }
+}
+
+
+
+.container h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-align: center;
+    transition: transform 0.4s ease, color 0.4s ease, text-shadow 0.4s ease; /* Smooth transition for transform, color, and shadow */
+}
+
+.container h1:hover {
+    color: #FF6347; /* Change text color on hover (Tomato color) */
+    transform: rotateY(15deg) rotateX(5deg); /* 3D rotation effect on hover */
+    text-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
+}
+
+
+.info-box {
+    align-items: center;
+    display: flex;
+}
+
+.info-box img {
+    width: 90px;
+    margin-right: 24px;
+}
+
+.inf-box{
+    align-items: center;
+    display: flex;
+}
+
+
+.sho {
+    color: #000
+}
+
+
+
+.inf-box {
+    perspective: 1000px; /* Add perspective to enable the 3D effect */
+}
+.inf-box img {
+    width: 400px;
+    margin-right: 20px;
+    transition: transform 0.3s ease-in-out; /* Smooth transition for transform */
+}
+
+.inf-box img:hover {
+    transform: scale(1.1); /* Scale up without rotation on hover */
+}
+
+
+
+.card {
+    height: 450px; /* Adjust the height as needed */
+    overflow: hidden; /* This will hide overflow content */
+    transition: all 0.3s;
+}
+
+.card-img-top {
+    height: 250px; /* Adjust the image height */
+    object-fit: cover; /* Ensure the image covers the area */
+}
+
+.card-body {
+    padding: 10px; /* Reduce padding inside the card body */
+}
+
+.card-title {
+    margin-bottom: 10px; /* Reduce space below the title */
+}
+
+.btn{
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 14px; /* Reduce the font size if needed */
+}
+
+
+
+
+.card:hover{
+    transform: scale(1.15);
+}
+
+
+   /* Flip Card CSS */
+   .flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 450px; /* Adjust this value to increase the height */
+    perspective: 1000px;
+    margin-bottom: 30px;
+}
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .flip-card-front {
+            background-color: #fff;
+            color: black;
+        }
+
+        .flip-card-back {
+            background-color: #f8f9fa;
+            color: black;
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .flip-card-front img {
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .flip-card-front .card-body {
+            padding: 15px;
+        }
+
+        .flip-card-back .card-body {
+            padding: 15px;
+        }
+
+
+
+
+
+        /* General card and image styling */
+        .carousel-item .card {
+            height: 550px; /* Set your desired card height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Ensure the card-img container doesn't overflow */
+        .carousel-item .card-img {
+            position: relative;
+            height: 80%; /* Set the height of the image container relative to the card */
+            overflow: hidden;
+        }
+
+        .carousel-item .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the container while maintaining aspect ratio */
+            transition: transform 1s ease;
+        }
+
+        .carousel-item .card-img .hover-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transform: scale(1);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        /* Hover effect for image */
+        .carousel-item .card-img:hover .hover-img {
+            opacity: 1;
+            transform: scale(1.1); /* Zoom in */
+        }
+
+        .carousel-item .card-img:hover .default-img {
+            transform: scale(1.1); /* Slight zoom out */
+        }
+
+        .carousel-item .card-img:not(:hover) .default-img {
+            transform: scale(1); /* Reset to original size */
+        }
+
+        /* Card text and button layout */
+        .carousel-item .card-body {
+            padding: 15px;
+            height: 30%; /* Adjust to take up the remaining space below the image */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Text and button container */
+        .carousel-item .card-text-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .carousel-item .card-text-button p {
+            margin: 0;
+            flex-grow: 1; /* Makes the text grow and take available space */
+            text-align: left;
+        }
+
+        /* Button styling with hover effect */
+        .carousel-item .custom-btn {
+            position: relative;
+            overflow: hidden;
+            width: 160px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .carousel-item .custom-btn .btn-text {
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-item  .custom-btn .btn-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0); /* Icon starts hidden */
+            opacity: 0;
+            z-index: 1;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .carousel-item .custom-btn:hover {
+            background-color: #0056b3; /* Change background color on hover */
+        }
+
+        .carousel-item .custom-btn:hover .btn-text {
+            transform: translateY(-110%); /* Move text upward on hover */
+        }
+
+        .carousel-item .custom-btn:hover .btn-icon {
+            transform: translate(-50%, -50%) scale(1); /* Show the icon on hover */
+            opacity: 1;
+        }
+
+        /* Add some spacing and alignment for the button */
+        .carousel-item .card-text-button .btn {
+            margin-left: 10px;
+        }
+    

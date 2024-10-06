@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .image-column {
+            position: relative;
+            background: url(image/bg.jpg) no-repeat center top; /* Align image to the top */
+            background-size: cover; /* Cover to ensure full coverage */
+            min-height: 80vh; /* Increased min-height */
+        }
+        .image-column::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(image/black-ink-splash-vector-22969339.avif) no-repeat center top; /* Align splash image to the top */
+            background-size: cover; /* Cover for splash image */
+            mix-blend-mode: screen;
+        }
+        .text-column {
+            padding-top: 0; /* Remove padding to align with image */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <div class="row mt-5">
+            <div class="col-lg-6 col-md-12 image-column">
+                <!-- Background image -->
+            </div>
+            <div class="col-lg-5 col-md-12 text-column mt-5">
+                <h1>Paragraph </h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae vitae illo voluptatum accusamus explicabo nesciunt odit quia tempore aperiam ex sapiente deleniti asperiores aspernatur cum officia debitis, corrupti fugiat, modi vero at, sed sequi laborum vel. Id sit, suscipit minus aut officia optio, maxime ea voluptates dolorum culpa illo libero officiis tempore adipisci inventore? Neque eveniet repellendus, doloremque inventore optio, ducimus ipsam eum dolores illum, soluta voluptas harum dolor molestias debitis reprehenderit suscipit veritatis placeat ratione. Amet quas, laborum soluta animi aliquid quibusdam obcaecati commodi excepturi eaque, eveniet error placeat? Deleniti totam culpa, similique fugiat cum nostrum necessitatibus delectus praesentium!</p>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

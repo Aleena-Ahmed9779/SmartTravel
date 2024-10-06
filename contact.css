@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact {
+    position: relative;
+    min-height: 100vh;
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url(pexels-stywo-1054218.jpg);
+    background-size: cover;
+}
+
+.contact .contant {
+    max-width: 800px;
+    text-align: center;
+}
+
+.contact .contant h2 {
+    font-size: 36px;
+    font-weight: 900;
+    font-family: 'Courier New', Courier, monospace;
+    background-image: url(HjKTNkG\ -\ Imgur.jpg);
+    background-clip: text;
+    color: transparent;
+    animation: Contact 2s linear infinite;
+}
+
+@keyframes Contact {
+    100%{
+        background-position: 0 1000px;
+    }
+}
+
+.contact .contant p {
+    font-weight: 300;
+    color: #fff;
+}
+
+.cns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.cns .contactInfo {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cns .contactInfo .box {
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+}
+
+.cns .contactInfo .box .icon {
+    min-width: 60px;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+    color: black;
+}
+
+.cns .contactInfo .box .text {
+    display: flex;
+    margin-left: 20px;
+    font-size: 16px;
+    color: #fff;
+    flex-direction: column;
+    font-weight: 300;
+}
+
+.cns .contactInfo .box .text h3 {
+    font-weight: 500;
+    color: #00bcd4;
+}
+
+.contctForm {
+    width: 40%;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    border-radius: 15px; /* Rounded corners */
+    position: relative;
+}
+
+.contctForm  h2 {
+    font-size: 30px;
+    color: #333;
+    font-weight: 500;
+}
+
+.contctForm  .inputbox {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.contctForm  .inputbox input,
+.contctForm .inputbox textarea {
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid #333;
+    outline: none;
+    resize: none;
+    background: transparent; /* Transparent background for inputs and textarea */
+}
+
+.contctForm .inputbox span {
+    position: absolute;
+    left: 0;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    pointer-events: none;
+    transition: 0.5s;
+    color: #666;
+}
+
+.contctForm  .inputbox input:focus ~ span,
+.contctForm  .inputbox input:valid ~ span,
+.contctForm  .inputbox textarea:focus ~ span,
+.contctForm  .inputbox textarea:valid ~ span {
+    color: #e91e63;
+    font-size: 12px;
+    transform: translateY(-20px);
+}
+
+.contctForm  .inputbox input[type="submit"] {
+    width: 100px;
+    background: #00bcd4; /* Original background color */
+    color: #fff; /* Text color */
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px; /* Rounded corners for submit button */
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+/* Hover effect */
+.contctForm  .inputbox input[type="submit"]:hover {
+    background: #0288d1; /* Darker shade of the original color */
+    transform: scale(1.05); /* Slightly larger on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+    border-radius: 8px; /* Slightly more rounded on hover */
+}
+
+/* Active (pressed) effect */
+.contctForm .inputbox input[type="submit"]:active {
+    background: #0277bd; /* Even darker shade */
+    transform: scale(0.98); /* Slightly smaller on click */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+}
+
+
+.thank-you-box {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: -70px; /* Position it above the form */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    padding: 15px;
+    background-color: #00bcd4;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+@media (max-width: 991px) {
+    .contact {
+        padding: 50px;
+    }
+    .cns {
+        flex-direction: column;
+    }
+    .cns .contactInfo {
+        margin-bottom: 40px;
+    }
+    .cns .contactInfo,
+    .contctForm  {
+        width: 100%;
+    }
+
+    /* Add responsive styles for .geo-location */
+    .geo-location iframe {
+        width: 100%; /* Make iframe full width */
+        height: 300px; /* Adjust the height for smaller screens */
+    }
+
+    .geo-location {
+        margin-top: 30px;
+        padding: 0 20px; /* Add padding to the sides for better spacing */
+    }
+}
+
+
+/* Existing CSS remains unchanged */
+
+.geo-location {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.geo-location button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #00bcd4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.geo-location button:hover {
+    background-color: #0288d1;
+    transform: scale(1.05);
+}
+
+.geo-location #location-info {
+    margin-top: 10px;
+}
+
+.geo-location iframe {
+    margin-top: 20px;
+    border-radius: 8px;
+}

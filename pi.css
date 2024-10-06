@@ -1,0 +1,24 @@
+.image-column {
+    position: relative;
+    background: url(image/bg.jpg) no-repeat center top; /* Align image to the top */
+    background-size: cover; /* Cover to ensure full coverage */
+    min-height: 80vh; /* Increased min-height */
+}
+.image-column:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(image/splash.jpg) no-repeat center top; /* Align splash image to the top */
+    background-size: cover; /* Cover for splash image */
+    mix-blend-mode: screen;
+}
+.text-column {
+    padding-top: 0; /* Remove padding to align with image */
+}
+.text-column h1,p{
+    color: black;
+
+}
